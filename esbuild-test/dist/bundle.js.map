@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/node_modules/pkg/sub/bar.js", "../src/node_modules/pkg/sub/foo.js", "../src/entry.js"],
+  "sourcesContent": ["function works() {}\nworks()", "require('sub')", "require('pkg/sub')\n"],
+  "mappings": ";;;;;;;AAAA;AAAA;AAAA,eAAS,QAAQ;AAAA,MAAC;AAClB,YAAM;AAAA;AAAA;;;ACDN;AAAA;AAAA;AAAA;AAAA;;;ACAA;",
+  "names": []
+}
