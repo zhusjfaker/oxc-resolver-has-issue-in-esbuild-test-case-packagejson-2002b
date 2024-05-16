@@ -46,4 +46,47 @@ mod tests {
         // because of the browser field in the package.json  "./sub/sub": "./sub/bar.js"
         println!("res-> \n {:#?}", res);
     }
+
+    #[test]
+    fn test_resolver_exports_package_json() {
+        let options = ResolveOptions {
+            alias_fields: vec![vec!["browser".into()]],
+            exports_fields: vec![vec!["exports".into()]],
+            condition_names: vec!["node".into(), "import".into(), "require".into()],
+            ..ResolveOptions::default()
+        };
+        let dir = Path::new("/Users/jason.zhu/Desktop/github/rolldown/crates/rolldown/tests/esbuild/packagejson/test_package_json_exports_default_over_import_and_require/src");
+        let resolver = Resolver::new(options);
+        let res = resolver.resolve(dir, "pkg").unwrap();
+        println!("res-> \n {:#?}", res);
+    }
+
+    #[test]
+    fn test_resolver_exports_order_package_json() {
+        let options = ResolveOptions {
+            alias_fields: vec![vec!["browser".into()]],
+            exports_fields: vec![vec!["exports".into()]],
+            condition_names: vec!["node".into(), "import".into(), "require".into()],
+            ..ResolveOptions::default()
+        };
+        let dir = Path::new("/Users/jason.zhu/Desktop/github/rolldown/crates/rolldown/tests/esbuild/packagejson/test_package_json_exports_alternatives/src");
+        let resolver = Resolver::new(options);
+        let res = resolver.resolve(dir, "pkg/apples/green.js").unwrap();
+        println!("res-> \n {:#?}", res);
+    }
+
+    #[test]
+    fn test_resolver_package_json_bad_main() {
+        let options = ResolveOptions {
+            alias_fields: vec![vec!["browser".into()]],
+            exports_fields: vec![vec!["exports".into()]],
+            condition_names: vec!["node".into(), "import".into(), "require".into()],
+            main_fields: vec!["main".into()],
+            ..ResolveOptions::default()
+        };
+        let dir = Path::new("/Users/jason.zhu/Desktop/github/rolldown/crates/rolldown/tests/esbuild/packagejson/test_package_json_bad_main/src");
+        let resolver = Resolver::new(options);
+        let res = resolver.resolve(dir, "demo-pkg").unwrap();
+        println!("res-> \n {:#?}", res);
+    }
 }
